@@ -3,6 +3,7 @@ const form = document.querySelector('#formInp');
 const apii = "5b81fa4832d5e858c089f1103d0a3e0f";
 
 
+
 form.addEventListener('submit',()=>{
     const elem = document.querySelector("#textInp");
     const city = elem.value
@@ -32,6 +33,7 @@ const getWheatherInfo = async (lon, lat) => {
     const pressure = document.querySelector('#pressure');
     const windSpeedd = document.querySelector('#windSpeedd');
     const windDegree = document.querySelector('#windDegree');
+    const icon = document.getElementById('wicon');
 
     const weatherApi = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apii}`;
     const response = await fetch(weatherApi);
@@ -68,7 +70,10 @@ const getWheatherInfo = async (lon, lat) => {
     windSpeedd.innerHTML = info.cityWspeed;
     windDegree.innerHTML = info.cityWdeg;
 
-  
+    const iconcode = info.cityIcon ;
+    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    icon.src = iconurl;
+
   };
 
 const init = (url)=>{
